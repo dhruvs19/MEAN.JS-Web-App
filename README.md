@@ -9,3 +9,4 @@ It includes following main features:
 * General user can create items on the website which are visible publically i.e to all users.
 * Users can see the items created by them and edit them (ownership of items is checked)
 * All the routes(end-points) are protected on the basis of user roles.
+* Uses express handlebars template engine for displaying views withing core page layout.

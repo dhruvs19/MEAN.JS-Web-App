@@ -16,6 +16,9 @@ module.exports = function(app) {
     .get(items.read)
     .put(items.update)
     .delete(items.delete);
+	
+	app.route('/api/upload/picture/item').all(itemsPolicy.isAllowed)
+		.post(items.uploadpicture);
 
   // Finish by binding the Item middleware
   app.param('itemId', items.itemByID);

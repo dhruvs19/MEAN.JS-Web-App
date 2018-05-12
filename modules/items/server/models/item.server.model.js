@@ -29,6 +29,12 @@ var ItemSchema = new Schema({
 		// types have specific functions e.g. trim, lowercase, uppercase (http://mongoosejs.com/docs/api.html#schema-string-js)
 		trim: true
 	},
+	imageUrl: {
+		type: String,
+		default: '',
+		// types have specific functions e.g. trim, lowercase, uppercase (http://mongoosejs.com/docs/api.html#schema-string-js)
+		trim: true
+	},
 	name: {
 		type: String,
 		default: '',

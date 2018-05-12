@@ -5,7 +5,10 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  Item = mongoose.model('Item'),
+	Item = mongoose.model('Item'),
+	config = require(path.resolve('./config/config')),
+	multer = require('multer'),
+	fs = require('fs'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -127,3 +130,48 @@ exports.itemByID = function(req, res, next, id) {
     next();
   });
 };
+
+/**
+ * Update profile picture
+ */
+exports.uploadpicture = function (req, res) {
+	
+	var multerConfig;
+	
+	multerConfig = config.uploads.profile.image;
+	
+	multerConfig.dest = './public/images/uploads/items';
+	multerConfig.fileFilter = require(path.resolve('./config/lib/multer')).imageFileFilter;
+
+	var upload = multer(multerConfig).single('item_image');
+
+	upload(req, res, function (uploadError) {
+		if (uploadError) {
+			console.error(uploadError);
+		} else {
+			console.log("prev image url on server: " + req.body.prev_image);	
+			deleteOldImage(req.body.prev_image);							//delete prev image
+			res.jsonp('/images/uploads/items/' + req.file.filename);
+		}
+	});
+	
+	function deleteOldImage(existingImageUrl) {
+		var file_path = './public' + existingImageUrl;
+		console.log("removing file: " + file_path);
+		if (existingImageUrl !== Item.schema.path('imageUrl').defaultValue) {
+
+			fs.unlink(path.resolve(file_path), function (unlinkError) {
+				if (unlinkError) {
+					// If file didn't exist, no need to reject promise
+					if (unlinkError.code === 'ENOENT') {
+						console.log('Removing profile image failed because file did not exist.');
+					}
+				} else {
+					
+				}
+			});
+		}
+	}
+
+};
+

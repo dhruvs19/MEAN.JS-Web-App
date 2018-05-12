@@ -9,7 +9,7 @@
 
   function ItemsListController(ItemsService) {
     var vm = this;
-
+	vm.display = 'grid';
     vm.items = ItemsService.query();
   }
 	
@@ -22,7 +22,7 @@
 
 	function MyItemsListController(ItemsService) {
 		var vm = this;
-
+		vm.display = 'grid';
 		vm.items = ItemsService.query({"type": "myitems"});
 	}
 }());

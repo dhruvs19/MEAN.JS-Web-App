@@ -23,6 +23,9 @@ exports.invokeRolesPolicies = function () {
 	},{
 		resources: '/api/myitems',
 		permissions: ['get']
+	},{
+		resources: '/api/upload/picture/item',
+		permissions: ['post']
 	}]
   }, {
     roles: ['user'],
@@ -35,6 +38,9 @@ exports.invokeRolesPolicies = function () {
 	},{
 		resources: '/api/myitems',
 		permissions: ['get']
+	},{
+		resources: '/api/upload/picture/item',
+		permissions: ['post']
 	}]
   }, {
     roles: ['guest'],

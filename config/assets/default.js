@@ -15,6 +15,7 @@ module.exports = {
       js: [
         // bower:js
         'public/lib/angular/angular.js',
+		'public/lib/jquery/dist/jquery.min.js',,
         'public/lib/angular-animate/angular-animate.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/ng-file-upload/ng-file-upload.js',
